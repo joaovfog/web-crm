@@ -1,0 +1,30 @@
+.menu {
+  padding: 8px 6px 8px 6px;
+}
+
+.menu:hover {
+  background: #f2f5f9;
+  border-radius: 4px;
+}
+
+.icon {
+  color: #595959;
+}
+
+.menu:hover .icon {
+  color: #ff5811;
+}
+
+@media only screen and (max-device-width : 640px) {
+  .container {
+    display: none;
+    position: fixed;
+  }
+}
+
+@media only screen and (min-device-width : 640px) {
+  .drawer {
+    display: none
+  }
+}
+
