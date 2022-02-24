@@ -1,16 +1,16 @@
-import { Add, Check, CheckCircle, Error } from "@mui/icons-material";
+import { Add, CheckCircle, Error } from "@mui/icons-material";
 import { Grid, Card, CardContent, Typography, Tooltip } from "@mui/material";
-import { HiPlus } from "react-icons/hi";
-import { MdFilterList } from "react-icons/md";
 import { Link } from "react-router-dom";
-import { Breadcrumbs, Button, IconButton, TextField } from "../../components";
+import { Breadcrumbs, IconButton } from "../../components";
 import {
   PageContent,
   PageHeader,
   PageHeaderTitle,
 } from "../../layout/components";
+import { DraggableCard } from "./components/Card";
+import { FilterBusiness } from "./components/Filter";
 import { ModalBusiness } from "./components/ModalBusiness";
-import { ModalBusinessProvider } from "./context/modalBusiness.context";
+import { BusinessProvider } from "./context/business.context";
 
 const BusinessContexted = () => {
   return (
@@ -46,9 +46,7 @@ const BusinessContexted = () => {
             >
               R$ 5.200.000,00 - 3 negócios
             </Typography>
-            <Button size="small" startIcon={<MdFilterList size={18} />}>
-              Filtro
-            </Button>
+            <FilterBusiness />
           </div>
         </div>
         <Grid container spacing={1}>
@@ -87,63 +85,13 @@ const BusinessContexted = () => {
                 </Typography>
               </CardContent>
             </Card>
-            <Card>
-              <CardContent>
-                <Typography
-                  sx={{
-                    fontSize: 18,
-                    fontFamily: "Trebuchet MS, sans-serif",
-                  }}
-                >
-                  Negócio Sygo
-                </Typography>
-                <div
-                  style={{ display: "flex", justifyContent: "space-between" }}
-                >
-                  <Typography
-                    sx={{ fontSize: 14 }}
-                    color="text.secondary"
-                    gutterBottom
-                  >
-                    Sygo
-                  </Typography>
-                  <IconButton sx={{ marginTop: -1.3 }}>
-                    <Tooltip
-                      title="Agendar Atividade"
-                      placement="right-start"
-                      enterDelay={300}
-                      leaveDelay={200}
-                    >
-                      <Error sx={{ color: "#ffdf5c" }} />
-                    </Tooltip>
-                  </IconButton>
-                </div>
-                <Grid container>
-                  <Grid item xs={1}>
-                    <img
-                      src="src/assets/images/user.png"
-                      alt="user"
-                      style={{ margin: "auto", height: 23, width: 23 }}
-                    />
-                  </Grid>
-                  <Grid item xs={11}>
-                    <Typography
-                      sx={{
-                        fontSize: 14,
-                        color: "#747678",
-                        fontWeight: 600,
-                        marginTop: 0.3,
-                        marginLeft: 0.8,
-                      }}
-                      color="text.secondary"
-                      gutterBottom
-                    >
-                      R$ 1.500.000,00
-                    </Typography>
-                  </Grid>
-                </Grid>
-              </CardContent>
-            </Card>
+            <DraggableCard
+              primaryText="Negócio Sygo"
+              secondaryText="Sygo"
+              value="R$ 1.500.000,00"
+              toolTipTitle="Agendar atividade"
+              icon={<Error sx={{ color: "#ffdf5c" }} />}
+            />
           </Grid>
           <Grid item xs={3}>
             <Card
@@ -214,120 +162,20 @@ const BusinessContexted = () => {
                 </Typography>
               </CardContent>
             </Card>
-            <Card>
-              <CardContent>
-                <Typography
-                  sx={{
-                    fontSize: 18,
-                    fontFamily: "Trebuchet MS, sans-serif",
-                  }}
-                >
-                  Negócio Baterias Real
-                </Typography>
-                <div
-                  style={{ display: "flex", justifyContent: "space-between" }}
-                >
-                  <Typography
-                    sx={{ fontSize: 14 }}
-                    color="text.secondary"
-                    gutterBottom
-                  >
-                    Baterias Real
-                  </Typography>
-                  <IconButton sx={{ marginTop: -1.3 }}>
-                    <Tooltip
-                      title="Atividade Agendada"
-                      placement="right-start"
-                      enterDelay={300}
-                      leaveDelay={200}
-                    >
-                      <CheckCircle sx={{ color: "#61c786" }} />
-                    </Tooltip>
-                  </IconButton>
-                </div>
-                <Grid container>
-                  <Grid item xs={1}>
-                    <img
-                      src="src/assets/images/user.png"
-                      alt="user"
-                      style={{ margin: "auto", height: 23, width: 23 }}
-                    />
-                  </Grid>
-                  <Grid item xs={11}>
-                    <Typography
-                      sx={{
-                        fontSize: 14,
-                        color: "#747678",
-                        fontWeight: 600,
-                        marginTop: 0.3,
-                        marginLeft: 0.8,
-                      }}
-                      color="text.secondary"
-                      gutterBottom
-                    >
-                      R$ 850.000,00
-                    </Typography>
-                  </Grid>
-                </Grid>
-              </CardContent>
-            </Card>
-            <Card sx={{ marginTop: 1 }}>
-              <CardContent>
-                <Typography
-                  sx={{
-                    fontSize: 18,
-                    fontFamily: "Trebuchet MS, sans-serif",
-                  }}
-                >
-                  Negócio Qualitá
-                </Typography>
-                <div
-                  style={{ display: "flex", justifyContent: "space-between" }}
-                >
-                  <Typography
-                    sx={{ fontSize: 14 }}
-                    color="text.secondary"
-                    gutterBottom
-                  >
-                    Qualitá
-                  </Typography>
-                  <IconButton sx={{ marginTop: -1.3 }}>
-                    <Tooltip
-                      title="Atividade Agendada"
-                      placement="right-start"
-                      enterDelay={300}
-                      leaveDelay={200}
-                    >
-                      <Error sx={{ color: "#ffdf5c" }} />
-                    </Tooltip>
-                  </IconButton>
-                </div>
-                <Grid container>
-                  <Grid item xs={1}>
-                    <img
-                      src="src/assets/images/user.png"
-                      alt="user"
-                      style={{ margin: "auto", height: 23, width: 23 }}
-                    />
-                  </Grid>
-                  <Grid item xs={11}>
-                    <Typography
-                      sx={{
-                        fontSize: 14,
-                        color: "#747678",
-                        fontWeight: 600,
-                        marginTop: 0.3,
-                        marginLeft: 0.8,
-                      }}
-                      color="text.secondary"
-                      gutterBottom
-                    >
-                      R$ 2.850.000,00
-                    </Typography>
-                  </Grid>
-                </Grid>
-              </CardContent>
-            </Card>
+            <DraggableCard
+              primaryText="Negócio Baterias Real"
+              secondaryText="Baterias Real"
+              value="R$ 850.000,00"
+              toolTipTitle="Atividade agendada"
+              icon={<CheckCircle sx={{ color: "#61c786" }} />}
+            />
+            <DraggableCard
+              primaryText="Negócio Qualitá"
+              secondaryText="Qualitá"
+              value="R$ 2.850.000,00"
+              toolTipTitle="Atividade agendada"
+              icon={<CheckCircle sx={{ color: "#61c786" }} />}
+            />
           </Grid>
           <Grid item xs={3}>
             <Card
@@ -356,7 +204,7 @@ const BusinessContexted = () => {
                     Proposta Feita
                   </Typography>
                   <IconButton sx={{ marginTop: "-4px" }}>
-                    <Add />
+                    <Add sx={{ color: "text-primary" }} />
                   </IconButton>
                 </div>
                 <Typography color="text.secondary">R$ 0,00</Typography>
@@ -370,7 +218,7 @@ const BusinessContexted = () => {
 };
 
 export const BusinessPage = () => (
-  <ModalBusinessProvider>
+  <BusinessProvider>
     <BusinessContexted />
-  </ModalBusinessProvider>
+  </BusinessProvider>
 );

@@ -22,10 +22,10 @@ import {
   Modal,
   TextField,
 } from "../../../components";
-import { useModalBusinessContext } from "../context/modalBusiness.context";
+import { useBusinessContext } from "../context/business.context";
 
 export const ModalBusiness = () => {
-  const { showModalBusiness, setShowModalBusiness } = useModalBusinessContext();
+  const { showModalBusiness, setShowModalBusiness } = useBusinessContext();
 
   return (
     <>
