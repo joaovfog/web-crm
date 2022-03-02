@@ -1,76 +1,70 @@
-import { Card, CardContent, Grid, Tooltip, Typography } from "@mui/material";
-import Draggable from "react-draggable";
-import { IconButton } from "../../../components";
+import { Card } from "@mui/material";
+import "./card.css";
 
-export const DraggableCard = ({
-  primaryText,
-  secondaryText,
-  value,
-  toolTipTitle,
-  icon,
-}: any) => {
+export const DraggableCard = () => {
+  const handleDraggableCard = () => {
+    const list_items = document.querySelectorAll<HTMLElement>(".list-item");
+    const lists = document.querySelectorAll<HTMLElement>(".list");
+
+    let draggedItem: any = null;
+
+    for (let i = 0; i < list_items.length; i++) {
+      const item = list_items[i];
+
+      item.addEventListener("dragstart", function () {
+        draggedItem = item;
+        setTimeout(function () {
+          item.style.display = "none";
+        }, 0);
+      });
+
+      item.addEventListener("dragend", function () {
+        setTimeout(function () {
+          draggedItem.style.display = "block";
+          draggedItem = null;
+        });
+      });
+
+      for (let j = 0; j < lists.length; j++) {
+        const list = lists[j];
+
+        list.addEventListener("dragover", function (e: any) {
+          e.preventDefault();
+        });
+
+        list.addEventListener("dragenter", function (e: any) {
+          e.preventDefault();
+          this.style.backgroundColor = "rgba(0, 0, 0, 0.2)";
+        });
+
+        list.addEventListener("dragleave", function () {
+          this.style.backgroundColor = "rgba(0, 0, 0, 0.1)";
+        });
+
+        list.addEventListener("drop", function () {
+          console.log("drop");
+          this.append(draggedItem);
+          this.style.backgroundColor = "rgba(0, 0, 0, 0.1)";
+        });
+      }
+    }
+  };
+
   return (
-    <Draggable axis="both">
-      <Card style={{ marginBottom: 15, borderLeft: '4px solid #ff5811' }}>
-        <CardContent>
-          <Typography
-            sx={{
-              fontSize: 18,
-              fontFamily: "Trebuchet MS, sans-serif",
-            }}
-          >
-            {primaryText}
-          </Typography>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-            }}
-          >
-            <Typography
-              sx={{ fontSize: 14 }}
-              color="text.secondary"
-              gutterBottom
-            >
-              {secondaryText}
-            </Typography>
-            <IconButton sx={{ marginTop: -1.3 }}>
-              <Tooltip
-                title={toolTipTitle}
-                placement="right-start"
-                enterDelay={300}
-                leaveDelay={200}
-              >
-                {icon}
-              </Tooltip>
-            </IconButton>
-          </div>
-          <Grid container>
-            <Grid item xs={1}>
-              <img
-                src="src/assets/images/user.png"
-                alt="user"
-                style={{ margin: "auto", height: 23, width: 23 }}
-              />
-            </Grid>
-            <Grid item xs={11}>
-              <Typography
-                sx={{
-                  fontSize: 14,
-                  color: "#747678",
-                  fontWeight: 600,
-                  marginTop: 0.3,
-                  marginLeft: 0.8,
-                }}
-                color="text.secondary"
-                gutterBottom
-              >
-                {value}
-              </Typography>
-            </Grid>
-          </Grid>
-        </CardContent>
-      </Card>
-    </Draggable>
+    <Card className="lists" onClick={handleDraggableCard}>
+      <div className="list">
+        <div className="list-item" draggable="true">
+          List item 1
+        </div>
+        <div className="list-item" draggable="true">
+          List item 2
+        </div>
+        <div className="list-item" draggable="true">
+          List item 3
+        </div>
+      </div>
+      <div className="list"></div>
+      <div className="list"></div>
+    </Card>
   );
 };

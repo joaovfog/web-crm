@@ -1,3 +1,5 @@
+import { DraggableCard } from "../business/components/Card";
+
 export const HomePage = () => {
-    return <h5>Home</h5>
-}
+  return <DraggableCard />
+};

@@ -1,5 +1,6 @@
-import { Add, CheckCircle, Error } from "@mui/icons-material";
-import { Grid, Card, CardContent, Typography, Tooltip } from "@mui/material";
+import { Add, Error } from "@mui/icons-material";
+import { Grid, Card, CardContent, Typography } from "@mui/material";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Breadcrumbs, IconButton } from "../../components";
 import {
@@ -85,13 +86,7 @@ const BusinessContexted = () => {
                 </Typography>
               </CardContent>
             </Card>
-            <DraggableCard
-              primaryText="Negócio Sygo"
-              secondaryText="Sygo"
-              value="R$ 1.500.000,00"
-              toolTipTitle="Agendar atividade"
-              icon={<Error sx={{ color: "#ffdf5c" }} />}
-            />
+            <DraggableCard />
           </Grid>
           <Grid item xs={3}>
             <Card
@@ -162,20 +157,7 @@ const BusinessContexted = () => {
                 </Typography>
               </CardContent>
             </Card>
-            <DraggableCard
-              primaryText="Negócio Baterias Real"
-              secondaryText="Baterias Real"
-              value="R$ 850.000,00"
-              toolTipTitle="Atividade agendada"
-              icon={<CheckCircle sx={{ color: "#61c786" }} />}
-            />
-            <DraggableCard
-              primaryText="Negócio Qualitá"
-              secondaryText="Qualitá"
-              value="R$ 2.850.000,00"
-              toolTipTitle="Atividade agendada"
-              icon={<CheckCircle sx={{ color: "#61c786" }} />}
-            />
+            <DraggableCard />
           </Grid>
           <Grid item xs={3}>
             <Card
